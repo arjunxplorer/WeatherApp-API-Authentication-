@@ -1,6 +1,6 @@
 'use client';
 
-import Image from "next/image";
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from './context/AuthContext';
@@ -51,9 +51,9 @@ export default function Home() {
     setLoading(true);
     setError(null);
     try {
-      const geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`;
+      const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`;
       const geoResponse = await axios.get(geoUrl);
-      
+
       if (geoResponse.data.length === 0) {
         throw new Error('City not found');
       }
@@ -99,8 +99,8 @@ export default function Home() {
                   placeholder="Enter city name"
                   className="flex-grow p-3 rounded-full bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50"
                 />
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   disabled={loading}
                   className="bg-white text-blue-500 px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors disabled:bg-white/50 disabled:text-blue-300"
                 >
@@ -128,7 +128,7 @@ export default function Home() {
                 </div>
               )}
 
-              <button 
+              <button
                 onClick={logOut}
                 className="w-full bg-white/20 text-white px-6 py-3 rounded-full font-semibold hover:bg-white/30 transition-colors"
               >
@@ -136,7 +136,7 @@ export default function Home() {
               </button>
             </>
           ) : (
-            <button 
+            <button
               onClick={googleSignIn}
               className="w-full bg-white text-blue-500 px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors"
             >
